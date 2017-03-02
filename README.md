@@ -1,5 +1,7 @@
 # Meseport
 
+###A mod for [Minetest](http://www.minetest.net)
+
 This mod allows you to teleport by means of Mese and Gold structures.
 You punch a gold block that's next to Mese to teleport 100 meters in the
 direction that the Mese is located relative to the gold block. Each
