@@ -1,2 +1,7 @@
-Meseportation system.
-The properties of Mese allows for teleportation systems made of gold and Mese. When a player punches a gold block which is next to Mese, he/she is teleported 100 blocks in the direction of the Mese block relative to the gold block. More Mese placed in a line adds to the transport distance. You can also place lines of mese on more than one side of the gold block to create diagonal transports! However, Mese on opposing sides cancel each other.
+Allows for the creation of Meseportation systems.
+
+Grants special effects to Mese blocks allowing for teleporters made of gold and Mese. When a player punches a gold block which is next to a Mese block, he/she is teleported 100 blocks in the direction of the Mese block relative to the gold block. More Mese placed in a line adds to the transport distance.
+
+Lines of Mese can be placed on more than one side of a gold block to create diagonal teleporters! However, Mese blocks on opposing sides cancel each other's power.
+
+If used carefully, complex teleportation networks can be set up allowing for teleporting around the land or for traveling up and down vertical mineshafts quickly.
