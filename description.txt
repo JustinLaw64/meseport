@@ -1,7 +1,7 @@
-Allows for the creation of Meseportation systems.
+Grants teleportation powers to Mese and gold blocks allowing for teleporter constructions.
 
-Grants special effects to Mese blocks allowing for teleporters made of gold and Mese. When a player punches a gold block which is next to a Mese block, he/she is teleported 100 blocks in the direction of the Mese block relative to the gold block. More Mese placed in a line adds to the transport distance.
+When you punch a gold block which is next to a Mese block, you are teleported 100 blocks in the direction of the Mese block. Each additional Mese block placed in a line adds 100 blocks to the distance.
 
-Lines of Mese can be placed on more than one side of a gold block to create diagonal teleporters! However, Mese blocks on opposing sides cancel each other's power.
+Lines of Mese can also be placed on multiple sides of a gold block to create diagonal teleporters! However, Mese blocks on opposing sides cancel each other's power.
 
-If used carefully, complex teleportation networks can be set up allowing for teleporting around the land or for traveling up and down vertical mineshafts quickly.
+If you don't know what you're doing, you'll likely bury yourself or send yourself into the sky! However, with careful planning, complex teleportation networks can be built to make navigating the land a breeze.
