@@ -7,6 +7,17 @@ local Polarities = {-1, 1}
 meseport.nodepowers = {}
 local NodePowers = meseport.nodepowers
 
+meseport.register_nodepower = function(node_name, power_level)
+	assert(minetest.registered_nodes[node_name] ~= nil)
+	
+	if power_level == nil or power_level == false then
+		meseport.nodepowers[node_name] = nil
+		return
+	end
+	assert(type(power_level) == "number")
+	meseport.nodepowers[node_name] = power_level
+end
+
 meseport.register_actionblock = function(ActionBlockType)
 	local action_block_def = minetest.registered_nodes[ActionBlockType]
 	assert(action_block_def ~= nil)
@@ -14,7 +25,7 @@ meseport.register_actionblock = function(ActionBlockType)
 	
 	minetest.override_item(ActionBlockType, {
 		on_punch = function(pos, node, puncher, pointed_thing)
-			if not PunchDebounces[puncher] then
+			if not PunchDebounces[puncher] and not puncher:get_player_control()["sneak"] then
 				local power = {x = 0, y = 0, z = 0}
 				local readPos = {x = pos.x, y = pos.y, z = pos.z}
 				
@@ -44,18 +55,35 @@ meseport.register_actionblock = function(ActionBlockType)
 	
 			return on_punch_old(pos, node, puncher, pointed_thing) -- Added to avoid conflicts with other mods.
 		end,
+		
+		_meseport_on_punch_old = on_punch_old,
 	})
 end
 
+meseport.unregister_actionblock = function(ActionBlockType)
+	local action_block_def = minetest.registered_nodes[ActionBlockType]
+	assert(action_block_def ~= nil)
+	local on_punch_old = action_block_def._meseport_on_punch_old
+	if on_punch_old == nil then
+		return -- was never registered
+	end
+	
+	minetest.override_item(ActionBlockType, {
+		on_punch = on_punch_old,
+	})	
+end
+	
+	
+
 if minetest.get_modpath("default") then
-	meseport.nodepowers["default:mese"] = 100
+	meseport.register_nodepower("default:mese", 100)
 	meseport.register_actionblock("default:goldblock")
 end
 
 if minetest.get_modpath("mcl_core")
 	and minetest.get_modpath("mesecons_torch")
 	and minetest.registered_nodes["mesecons_torch:redstoneblock"] then
-	
+
+	meseport.register_nodepower("mesecons_torch:redstoneblock", 100)
 	meseport.register_actionblock("mcl_core:goldblock")
-	meseport.nodepowers["mesecons_torch:redstoneblock"] = 100
 end
