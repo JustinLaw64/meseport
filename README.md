@@ -10,7 +10,9 @@ You can also add Mese to multiple sides in such a way to go in diagonal
 directions! However, Mese on opposing sides cancel each other. Thanks to
 oscar14 for the Gold-Mese-Transport idea!
 
-If the default mod is not installed, another mod will need to use meseport's API to set what nodes it uses.
+If Mineclone2 is installed, this mod will instead use gold blocks and Redstone blocks for teleportation.
+
+If neither of these mods are is not installed, another mod will need to use meseport's API to set what nodes it uses.
 
 ## API
 

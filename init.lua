@@ -51,3 +51,11 @@ if minetest.get_modpath("default") then
 	meseport.nodepowers["default:mese"] = 100
 	meseport.register_actionblock("default:goldblock")
 end
+
+if minetest.get_modpath("mcl_core")
+	and minetest.get_modpath("mesecons_torch")
+	and minetest.registered_nodes["mesecons_torch:redstoneblock"] then
+	
+	meseport.register_actionblock("mcl_core:goldblock")
+	meseport.nodepowers["mesecons_torch:redstoneblock"] = 100
+end
