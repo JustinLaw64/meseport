@@ -9,15 +9,17 @@ additional Mese added in a straight line adds an additional 100 meters.
 You can also add Mese to multiple sides in such a way to go in diagonal
 directions! However, Mese on opposing sides cancel each other.
 
-Sneak-punching the gold block will allow it to be dug normally.
+* Sneak-punching the gold block will allow it to be dug without being teleported.
 
-If Mineclone2 is installed, this mod will instead use gold blocks and Redstone blocks for teleportation.
+* If MineClone2 is the base game, gold blocks and Redstone blocks will be used as a substitute for gold and Mese blocks.
 
-If neither of these mods are is not installed, another mod will need to use meseport's API to set what nodes it uses.
+* If the default mod isn't present and MineClone2 isn't the base game, another mod must use Meseport's API to set its nodes.
+
+### License: CC0
 
 ## API
 
-``meseport.register_actionblock(node_name)`` - A method that sets a particular node type to trigger a meseport teleport when punched. When the default mod is installed it will automatically be called with ``meseport.register_actionblock("default:goldblock")``.
+``meseport.register_actionblock(node_name)`` - Sets a particular node type to trigger a Meseport teleport when punched. When the default mod is installed it will automatically be called on `default:goldblock`.
 
 ``meseport.unregister_actionblock(node_name)`` - The opposite of the above, unregisters a particular node type and restores its old behaviour.
 
@@ -31,6 +33,7 @@ If neither of these mods are is not installed, another mod will need to use mese
 
 Use ``meseport.register_nodepower`` to modify the values here.
 
-### License: CC0
+# Special Thanks
 
-Thanks to oscar14 for the Gold-Mese-Transport idea!
+* oscar14 for the Gold-Mese-Transport idea!
+* FaceDeer for the added API and compatibility with MineClone2!

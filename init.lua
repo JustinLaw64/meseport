@@ -7,21 +7,21 @@ local Polarities = {-1, 1}
 meseport.nodepowers = {}
 local NodePowers = meseport.nodepowers
 
-meseport.register_nodepower = function(node_name, power_level)
-	assert(minetest.registered_nodes[node_name] ~= nil)
+function meseport.register_nodepower(node_name, power_level)
+	assert(minetest.registered_nodes[node_name] ~= nil, "Argument 1 must be the name of a node type registered prior to calling 'meseport.register_nodepower'.")
 	
 	if power_level == nil or power_level == false then
 		meseport.nodepowers[node_name] = nil
 		return
 	end
-	assert(type(power_level) == "number")
+	assert(type(power_level) == "number", "Argument 2 must be a number or the values 'nil' or 'false'.")
 	meseport.nodepowers[node_name] = power_level
 end
 
-meseport.register_actionblock = function(ActionBlockType)
-	local action_block_def = minetest.registered_nodes[ActionBlockType]
-	assert(action_block_def ~= nil)
-	local on_punch_old = action_block_def.on_punch -- Added to avoid conflicts with other mods.
+function meseport.register_actionblock(ActionBlockType)
+	local nodeDefinition = minetest.registered_nodes[ActionBlockType]
+	assert(nodeDefinition ~= nil, "Argument 1 must be the name of a node type registered prior to calling 'meseport.register_actionblock'.")
+	local on_punch_old = nodeDefinition.on_punch -- Added to avoid conflicts with other mods.
 	
 	minetest.override_item(ActionBlockType, {
 		on_punch = function(pos, node, puncher, pointed_thing)
@@ -60,26 +60,26 @@ meseport.register_actionblock = function(ActionBlockType)
 	})
 end
 
-meseport.unregister_actionblock = function(ActionBlockType)
-	local action_block_def = minetest.registered_nodes[ActionBlockType]
-	assert(action_block_def ~= nil)
-	local on_punch_old = action_block_def._meseport_on_punch_old
+function meseport.unregister_actionblock(ActionBlockType)
+	local nodeDefinition = minetest.registered_nodes[ActionBlockType]
+	assert(nodeDefinition ~= nil, "Argument 1 must be the name of a node type registered prior to calling 'meseport.unregister_actionblock'.")
+	local on_punch_old = nodeDefinition._meseport_on_punch_old
 	if on_punch_old == nil then
 		return -- was never registered
 	end
 	
 	minetest.override_item(ActionBlockType, {
 		on_punch = on_punch_old,
-	})	
+	})
 end
-	
-	
 
+-- Support Minetest_Game
 if minetest.get_modpath("default") then
 	meseport.register_nodepower("default:mese", 100)
 	meseport.register_actionblock("default:goldblock")
 end
 
+-- Support MineClone2
 if minetest.get_modpath("mcl_core")
 	and minetest.get_modpath("mesecons_torch")
 	and minetest.registered_nodes["mesecons_torch:redstoneblock"] then
